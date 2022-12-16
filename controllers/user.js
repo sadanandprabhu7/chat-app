@@ -24,6 +24,12 @@ exports.userRegistration = async (req, res, next) => {
   }
 };
 
+const jwt = require("jsonwebtoken");
+
+function webtoken(id) {
+  return jwt.sign({ userId: id }, "sadanadSecreteKey");
+}
+
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -34,12 +40,14 @@ exports.login = async (req, res, next) => {
         return res.json({ msg: "something went wrong" });
       }
       if (found) {
-        res.json({ msg: "successful login" });
+        res
+          .status(200)
+          .json({ msg: "successful login", token: webtoken(user[0].id) });
       } else {
-        return res.json({ msg: "incorrect password" });
+        return res.status(401).json({ msg: "incorrect password" });
       }
     });
   } else {
-    return res.json({ msg: "user does not exist" });
+    return res.status(404).json({ msg: "user does not exist" });
   }
 };
