@@ -5,13 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"
+      async
+    ></script>
+    <script src="sign-up.js" defer></script>
   </head>
   <body>
-    <form action="">
-      <input type="text" placeholder="Enter Your Name" />
-      <input type="email" placeholder="Enter Your Email" />
-      <input type="number" placeholder="Enter Your Phone Number" />
-      <input type="password" placeholder="Enter Your Password" />
+    <form onsubmit="save(event)">
+      <input type="text" name="name" placeholder="Enter Your Name" />
+      <input type="email" name="email" placeholder="Enter Your Email" />
+      <input type="text" name="number" placeholder="Enter Your Phone Number" />
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter Your Password"
+      />
+      <button>submit</button>
     </form>
   </body>
 </html>
