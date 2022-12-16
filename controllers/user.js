@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const { where } = require("sequelize");
 
 exports.userRegistration = async (req, res, next) => {
   const { name, email, phone, password } = req.body;
@@ -20,5 +21,25 @@ exports.userRegistration = async (req, res, next) => {
 
       res.json({ data: saved, msg: "successfull registration" });
     });
+  }
+};
+
+exports.login = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  const user = await User.findAll({ where: { email: email } });
+  if (user.length > 0) {
+    bcrypt.compare(password, user[0].password, (err, found) => {
+      if (err) {
+        return res.json({ msg: "something went wrong" });
+      }
+      if (found) {
+        res.json({ msg: "successful login" });
+      } else {
+        return res.json({ msg: "incorrect password" });
+      }
+    });
+  } else {
+    return res.json({ msg: "user does not exist" });
   }
 };
