@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
 const sequelize = require("../util/database");
-const phoneValidationRegex = /\d{3}-\d{3}-\d{4}/;
+
 const User = sequelize.define("user", {
   id: {
     type: Sequelize.INTEGER,

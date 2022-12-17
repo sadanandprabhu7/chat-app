@@ -9,8 +9,8 @@ async function login(event) {
     const obj = { email, password };
     const res = await axios.post(`http://localhost:3000/user/login`, obj);
     localStorage.setItem("token", res.data.token);
-    console.log(res.data.token);
     alert(`${res.data.msg}`);
+    window.location.replace("chatPage.html");
   } catch (e) {
     alert(`${e.response.data.msg}`);
   }
