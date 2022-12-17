@@ -1,10 +1,14 @@
 window.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
-  const chat = await axios.get(`http://localhost:3000/user/chats`, {
-    headers: { Authorization: token },
-  });
 
-  showData(chat.data.data, chat.data.name);
+  setInterval(async () => {
+    console.log("hello");
+    const chat = await axios.get(`http://localhost:3000/user/chats`, {
+      headers: { Authorization: token },
+    });
+
+    showData(chat.data.data, chat.data.name);
+  }, 1000);
 });
 
 async function message(event) {
@@ -26,6 +30,7 @@ async function message(event) {
 
 function showData(chat, name) {
   let tb = document.getElementById("tb");
+  tb.innerHTML = "";
   chat.forEach((val) => {
     name.forEach((name) => {
       if (val.userId == name.id) {
