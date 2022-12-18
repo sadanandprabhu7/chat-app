@@ -2,9 +2,13 @@ const Chat = require("../models/chat");
 const User = require("../models/user");
 
 exports.getAllChat = async (req, res) => {
-  const chats = await Chat.findAll();
+  const chats = await Chat.findAll({
+    limit: 5,
+
+    order: [["id", "DESC"]],
+  });
   const user = await User.findAll();
-  res.json({ data: chats, name: user });
+  res.json({ data: chats, name: user, addName: req.user.name });
 };
 
 exports.sendChat = async (req, res, next) => {
