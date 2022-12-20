@@ -1,0 +1,94 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+#wrapper {
+  width: 80%;
+  margin: 0 auto;
+  background-color: aquamarine;
+  min-height: 500px;
+}
+body {
+  margin: 0 auto;
+  background-color: azure;
+
+  font-family: arial, helvetica;
+}
+#header {
+  height: 100px;
+  background-color: blueviolet;
+
+  padding-top: 10px;
+}
+#chat-main-container {
+  min-height: 500px;
+  width: 25%;
+  background-color: white;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+}
+#list-of-group-sidebar {
+  width: 25%;
+  min-height: 500px;
+  float: left;
+  background-color: rgb(212, 212, 212);
+  box-sizing: border-box;
+  padding: 10px;
+}
+#list-of-users-inGroup {
+  width: 25%;
+  min-height: 500px;
+  float: left;
+  background-color: rgb(158, 243, 162);
+  box-sizing: border-box;
+  padding: 10px;
+}
+#createGroup-sidebar {
+  width: 25%;
+  min-height: 500px;
+  float: right;
+  background-color: rgb(16, 255, 135);
+  box-sizing: border-box;
+  padding: 10px;
+}
+#footer {
+  clear: both;
+  background-color: cadetblue;
+  min-height: 100px;
+}
+#menu {
+  background-color: lightsalmon;
+}
+#menu li {
+  display: inline-block;
+  /* to display  inline and as block to give width and height; */
+}
+#menu li a {
+  display: block;
+  padding: 10px 10px;
+
+  text-decoration: none;
+  color: black;
+  /* link ka underline hatane ke kiye aur uske text ka 
+  color badalne ke liye*/
+}
+#menu li a:hover {
+  background-color: crimson;
+  color: white;
+}
+#menu ul {
+  margin: 0;
+  padding: 0;
+  /* ul ki padding: margin by default jo h use hatane ke liye; */
+}

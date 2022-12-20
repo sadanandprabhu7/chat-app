@@ -7,29 +7,56 @@
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <script src="chatPage.js"></script>
-    <style>
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      th,
-      td {
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(odd) {
-        background-color: #f2f2f2;
-      }
-    </style>
+    <link rel="stylesheet" href="mycss.css" />
   </head>
   <body>
-    <ol id="list"></ol>
-    <table id="tb"></table>
-    <form onsubmit="message(event)">
-      <input type="text" name="chat" placeholder="send message" />
-      <button>send</button>
-    </form>
+    <div id="wrapper">
+      <div id="header">
+        <h1>Header</h1>
+      </div>
+      <div id="menu">
+        <ul>
+          <li><a href="chatPage.html">HOME</a></li>
+          <li><a href="group.html">GROUPS</a></li>
+          <li><a href="#"></a></li>
+        </ul>
+      </div>
+      <div id="chat-main-container">
+        <h2>chat</h2>
+        <ol id="list"></ol>
+        <table id="tb"></table>
+        <form onsubmit="message(event)">
+          <input type="text" name="chat" placeholder="send message" />
+          <button>send</button>
+        </form>
+      </div>
+
+      <div id="list-of-group-sidebar">
+        <h2>groups</h2>
+        <ol id="links"></ol>
+
+        <table id="tbofGroup"></table>
+      </div>
+      <div id="createGroup-sidebar">
+        <h2>Create Group</h2>
+        <form onsubmit="CreateGroup(event)">
+          <table>
+            <tr>
+              <td>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter Name of Group"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><button>Create</button></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div id="footer"><h2>footer</h2></div>
+    </div>
   </body>
 </html>

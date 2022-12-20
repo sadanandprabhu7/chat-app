@@ -1,7 +1,9 @@
-window.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem("token");
+const API = `http://localhost:3000`;
+const token = localStorage.getItem("token");
+//global varibale
 
-  const chat = await axios.get(`http://localhost:3000/user/chats`, {
+window.addEventListener("DOMContentLoaded", async () => {
+  const chat = await axios.get(`${API}/user/chats`, {
     headers: { Authorization: token },
   });
 
@@ -21,13 +23,11 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 async function message(event) {
   event.preventDefault();
-
-  const token = localStorage.getItem("token");
   const message = event.target.chat.value;
   const obj = {
     message,
   };
-  const res = await axios.post(`http://localhost:3000/user/msg`, obj, {
+  const res = await axios.post(`${API}/user/msg`, obj, {
     headers: { Authorization: token },
   });
   let tb = document.getElementById("tb");
@@ -58,3 +58,30 @@ function fromlocal(myName) {
     });
   });
 }
+
+async function CreateGroup(event) {
+  event.preventDefault();
+  console.log("hi");
+  const name = event.target.name.value;
+  if (name == "") {
+    alert("please enter group name");
+  }
+  const res = await axios.post(
+    `${API}/user/createGroup`,
+    {
+      name,
+    },
+    { headers: { Authorization: token } }
+  );
+  alert(`${res.data.msg}`);
+}
+
+// async function getLink(groupId) {
+//   const a = document.createElement("a");
+//   let linkName = document.createTextNode("CopyInvitationLink");
+//   a.appendChild(linkName);
+//   // a.title = "copy invitation link";
+//   a.href = `${groupId}`;
+//   const link = document.getElementById("links");
+//   link.append(a);
+// }

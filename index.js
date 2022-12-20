@@ -1,3 +1,4 @@
+const API = `http://localhost:3000`;
 async function login(event) {
   try {
     event.preventDefault();
@@ -7,7 +8,7 @@ async function login(event) {
       return alert("please fill the details");
     }
     const obj = { email, password };
-    const res = await axios.post(`http://localhost:3000/user/login`, obj);
+    const res = await axios.post(`${API}/user/login`, obj);
     localStorage.setItem("token", res.data.token);
     alert(`${res.data.msg}`);
     window.location.replace("chatPage.html");
