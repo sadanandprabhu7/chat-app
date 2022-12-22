@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"
+      async
+    ></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <div id="regis-wrapper">
+      <form onsubmit="login(event)">
+        <table id="regis">
+          <tr>
+            <th id="h1"><h2>Login</h2></th>
+          </tr>
+          <tr>
+            <td>
+              <input
+                class="input"
+                type="email"
+                name="email"
+                placeholder="Enter Your Email"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                class="input"
+                type="password"
+                name="password"
+                placeholder="Enter Your Password"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><button id="login">Login</button></td>
+          </tr>
+          <tr>
+            <td><a href="sign-up.html">New User</a></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

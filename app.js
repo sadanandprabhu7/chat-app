@@ -2,6 +2,7 @@ const express = require("express");
 const sequelize = require("./util/database");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const userRoutes = require("./routes/user");
 
@@ -19,6 +20,10 @@ app.use(bodyParser.json());
 app.use("/user", userRoutes);
 
 app.use("/user", groupRoutes);
+
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, `public/${req.url}`));
+});
 
 User.hasMany(Chat); // one to many relation
 Chat.belongsTo(User);
