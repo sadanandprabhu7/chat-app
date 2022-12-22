@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const userRoutes = require("./routes/user");
-const chatRoutes = require("./routes/chat");
+
 const groupRoutes = require("./routes/group");
 
 const User = require("./models/user");
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/user", userRoutes);
-app.use("/user", chatRoutes);
+
 app.use("/user", groupRoutes);
 
 User.hasMany(Chat); // one to many relation

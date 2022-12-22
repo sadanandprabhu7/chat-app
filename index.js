@@ -10,8 +10,9 @@ async function login(event) {
     const obj = { email, password };
     const res = await axios.post(`${API}/user/login`, obj);
     localStorage.setItem("token", res.data.token);
+    localStorage.setItem("name", res.data.name);
     alert(`${res.data.msg}`);
-    window.location.replace("chatPage.html");
+    window.location.replace("home.html");
   } catch (e) {
     alert(`${e.response.data.msg}`);
   }

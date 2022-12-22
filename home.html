@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
-    <script src="chatPage.js"></script>
+    <script src="home.js" defer></script>
     <link rel="stylesheet" href="mycss.css" />
   </head>
   <body>
@@ -16,28 +16,23 @@
       </div>
       <div id="menu">
         <ul>
-          <li><a href="chatPage.html">HOME</a></li>
+          <li><a href="home.html">HOME</a></li>
           <li><a href="group.html">GROUPS</a></li>
           <li><a href="index.html">LOGIN PAGE</a></li>
           <li><a href="sign-up.html">SIGNUP PAGE</a></li>
         </ul>
       </div>
       <div id="chat-main-container">
-        <h2>chat</h2>
+        <!-- <h2>chat</h2>
         <ol id="list"></ol>
         <table id="tb"></table>
         <form onsubmit="message(event)">
           <input type="text" name="chat" placeholder="send message" />
           <button>send</button>
-        </form>
+        </form> -->
       </div>
 
-      <div id="list-of-group-sidebar">
-        <h2>groups</h2>
-        <ol id="links"></ol>
-
-        <table id="tbofGroup"></table>
-      </div>
+      <div id="list-of-group-sidebar"></div>
       <div id="createGroup-sidebar">
         <h2>Create Group</h2>
         <form onsubmit="CreateGroup(event)">
@@ -57,7 +52,7 @@
           </table>
         </form>
       </div>
-      <div id="footer"><h2>footer</h2></div>
+      <div id="footer"><h2></h2></div>
     </div>
   </body>
 </html>
