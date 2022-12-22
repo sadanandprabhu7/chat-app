@@ -13,6 +13,7 @@ exports.getAllChat = async (req, res) => {
 
 exports.sendChat = async (req, res, next) => {
   const message = req.body.message;
-  const data = await req.user.createChat({ chat: message });
+  const groupId = req.body.groupId;
+  const data = await req.user.createChat({ chat: message, groupId: groupId });
   res.json({ data: data, msg: "success", name: req.user.name });
 };

@@ -8,7 +8,9 @@ window.addEventListener("DOMContentLoaded", async () => {
   });
 
   const myName = chat.data.addName;
-  console.log(myName);
+
+  const h1 = document.getElementById("h1");
+  h1.innerHTML = myName;
   const chatData = chat.data.data;
   const userData = chat.data.name;
   const chatObj = { chatData };

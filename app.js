@@ -25,6 +25,7 @@ Chat.belongsTo(User);
 
 Group.hasMany(Chat); //one to many relation
 Chat.belongsTo(User);
+
 // user belongsTo many Groups through userGroup
 // group belongsto many user through userGroup
 // many to many relationship
