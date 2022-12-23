@@ -1,3 +1,4 @@
+const API = `http://13.115.230.29:3000`;
 async function save(event) {
   event.preventDefault();
   try {
@@ -9,7 +10,7 @@ async function save(event) {
       alert("please fill details");
     }
     const obj = { name, email, phone, password };
-    const response = await axios.post(`http://localhost:3000/user/save`, obj);
+    const response = await axios.post(`${API}/user/save`, obj);
     alert(`${response.data.msg}`);
     event.target.name.value = "";
     event.target.email.value = "";

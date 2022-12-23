@@ -16,7 +16,7 @@ input {
   height: 30px;
 }
 #signUpBtn,
-#login {
+#loginBtn {
   width: 307px;
   height: 33px;
   background-color: rgb(59, 248, 185);
