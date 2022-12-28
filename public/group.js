@@ -1,4 +1,5 @@
-const API = `http://13.115.230.29:3000`;
+const API = `http://localhost:3000`;
+//const API = `http://13.115.230.29:3000`;
 const token = localStorage.getItem("token");
 //gobal variable
 window.addEventListener("DOMContentLoaded", async () => {
@@ -76,6 +77,7 @@ async function showChats(loggedInUser, groupId, groupName) {
 async function message(event) {
   try {
     event.preventDefault();
+
     const message = event.target.chat.value;
     const groupId = event.target.id.value;
     const obj = {
@@ -85,9 +87,6 @@ async function message(event) {
     const res = await axios.post(`${API}/user/groupMsg`, obj, {
       headers: { Authorization: token },
     });
-    // let tb = document.getElementById("tb");
-    // tb.innerHTML += `<tr><th>${res.data.name}</th></tr>
-    //       <tr><td>${res.data.data.chat}</td></tr>`;
     event.target.chat.value = "";
   } catch (e) {
     console.log(e);
@@ -224,3 +223,24 @@ async function groupExit(userId, groupId) {
     console.log(e);
   }
 }
+
+// async function imageUpload(event) {
+//   try {
+//     event.preventDefault();
+
+//     const file = document.getElementById("uploader").files[0];
+
+//     //const file = uploader.files[0];
+//     console.log(file);
+//     let formData = new FormData();
+//     await formData.append("file", "sadanand");
+
+//     console.log(">>>", JSON.stringify(formData));
+
+//     const res = await axios.post(`${API}/user/groupMsg`, formData, {
+//       headers: { Authorization: token },
+//     });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }

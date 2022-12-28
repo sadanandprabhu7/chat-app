@@ -4,6 +4,7 @@ const Chat = require("../models/chat");
 const User = require("../models/user");
 const sequelize = require("sequelize");
 const { Op } = sequelize;
+const AWS = require("aws-sdk");
 
 exports.CreateGroup = async (req, res, next) => {
   try {
@@ -45,6 +46,10 @@ exports.openGroup = async (req, res, next) => {
 
 exports.sendMesageInGroup = async (req, res, next) => {
   try {
+    // console.log(">>>>>>>.", req.body.file);
+    // const filename = `image/${new Date()}.png`;
+    // const fileUrl = await uploadToS3("image", filename);
+
     const message = req.body.message;
     const groupId = req.body.groupId;
     const data = await req.user.createChat({ chat: message, groupId: groupId });
@@ -54,6 +59,33 @@ exports.sendMesageInGroup = async (req, res, next) => {
   }
 };
 
+function uploadToS3(data, filename) {
+  const BUCKET_NAME = process.env.BUCKET_NAME;
+  const IAM_USER_KEY = process.env.IAM_USER_KEY;
+  const IM_USER_SECRET = process.env.IM_USER_SECRET;
+
+  let s3bucket = new AWS.S3({
+    accessKeyId: IAM_USER_KEY,
+    secretAccessKey: IM_USER_SECRET,
+  });
+
+  let params = {
+    Bucket: BUCKET_NAME,
+    Key: filename,
+    Body: data,
+    ACL: "public-read",
+  };
+
+  return new Promise((resolve, reject) => {
+    s3bucket.upload(params, (err, s3response) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(s3response.Location);
+      }
+    });
+  });
+}
 async function isAdmin(userId, groupId) {
   try {
     const result = await UserGroup.findOne({

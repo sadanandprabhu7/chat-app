@@ -1,4 +1,6 @@
-const API = `http://13.115.230.29:3000`;
+const API = `http://localhost:3000`;
+//const API = `http://13.115.230.29:3000`;
+
 async function save(event) {
   event.preventDefault();
   try {

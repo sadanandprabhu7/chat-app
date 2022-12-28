@@ -31,10 +31,25 @@
         <h4 id="nameofgroup"></h4>
         <table id="groupstable"></table>
         <form id="myform" onsubmit="message(event)">
-          <input type="text" name="chat" placeholder="send message" />
-          <input id="groupId" name="id" type="hidden" />
-          <button>send</button>
-        </form>
+          <table id="sendTable">
+            <tr>
+              <td>
+                <input type="text" name="chat" placeholder="send message" />
+              </td>
+            </tr>
+            <tr>
+              <td><input id="groupId" name="id" type="hidden" /></td>
+            </tr>
+            <tr>
+              <form action="">
+                <input type="file" name="img-upload" id="uploader"/>
+                <button id="upBtn" onclick="imageUpload(event)">upload</button>
+              </form>
+            </tr>
+            <tr>
+              <td><button>send</button></td>
+            </tr>
+          </table>
       </div>
       <div id="list-of-users-inGroup">
         <h3>Member</h3>
