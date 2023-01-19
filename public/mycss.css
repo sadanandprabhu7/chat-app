@@ -8,6 +8,10 @@ td {
   text-align: left;
   padding: 8px;
 }
+img {
+  width: 200px;
+  height: 200px;
+}
 
 tr:nth-child(odd) {
   background-color: #f2f2f2;

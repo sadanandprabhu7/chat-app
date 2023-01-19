@@ -61,12 +61,32 @@ async function showChats(loggedInUser, groupId, groupName) {
     tb.innerHTML = "";
     sortable.forEach((group) => {
       if (loggedInUser === group.user.id) {
-        const tr = `<tr><th >${"You"}</th></tr>
-          <tr><td>${group.chat}</td></tr>`; /// after clicking on particular group name displaying all chats of a group
+        let tr;
+        if (!group.image) {
+          tr = `<tr><th >${"You"}</th></tr>
+          <tr><td>${group.chat}</td></tr>`;
+        } else {
+          tr = `<tr><th >${"You"}</th></tr>
+          <tr><td>${group.chat}</td></tr>
+          <tr><td ><img src="${
+            group.image
+          }" alt="image" width="100" height="100"></td></tr>`;
+        }
+        /// after clicking on particular group name displaying all chats of a group
         tb.innerHTML = tb.innerHTML + tr;
       } else if (loggedInUser !== group.user.id) {
-        const tr = `<tr><th >${group.user.name}</th></tr>
-          <tr><td>${group.chat}</td></tr>`; /// after clicking on particular group name displaying all chats of a group
+        let tr;
+        if (!group.image) {
+          tr = `<tr><th >${group.user.name}</th></tr>
+          <tr><td>${group.chat}</td></tr>`;
+        } else {
+          tr = `<tr><th >${"You"}</th></tr>
+          <tr><td>${group.chat}</td></tr>
+          <tr><td ><img src="${
+            group.image
+          }" alt="image" width="100" height="100"></td></tr>`;
+        }
+        /// after clicking on particular group name displaying all chats of a group
         tb.innerHTML = tb.innerHTML + tr;
       }
     });
@@ -74,20 +94,41 @@ async function showChats(loggedInUser, groupId, groupName) {
     console.log(e);
   }
 }
+
 async function message(event) {
   try {
     event.preventDefault();
-
     const message = event.target.chat.value;
-    const groupId = event.target.id.value;
+    const groupId = event.target.groupId.value;
     const obj = {
       message,
       groupId,
     };
     const res = await axios.post(`${API}/user/groupMsg`, obj, {
-      headers: { Authorization: token },
+      headers: {
+        Authorization: token,
+      },
     });
     event.target.chat.value = "";
+  } catch (e) {
+    console.log(e);
+  }
+}
+async function imageSend(event) {
+  try {
+    event.preventDefault();
+    const groupId = document.getElementById("groupId").value;
+    const file = document.getElementById("image").files[0];
+    const formData = new FormData();
+    formData.append("pic", file);
+    formData.append("id", groupId);
+    const res = await axios.post(`${API}/user/imageSend`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: token,
+      },
+    });
+    document.getElementById("image").value = "";
   } catch (e) {
     console.log(e);
   }
@@ -223,24 +264,3 @@ async function groupExit(userId, groupId) {
     console.log(e);
   }
 }
-
-// async function imageUpload(event) {
-//   try {
-//     event.preventDefault();
-
-//     const file = document.getElementById("uploader").files[0];
-
-//     //const file = uploader.files[0];
-//     console.log(file);
-//     let formData = new FormData();
-//     await formData.append("file", "sadanand");
-
-//     console.log(">>>", JSON.stringify(formData));
-
-//     const res = await axios.post(`${API}/user/groupMsg`, formData, {
-//       headers: { Authorization: token },
-//     });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// }

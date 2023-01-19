@@ -34,22 +34,37 @@
           <table id="sendTable">
             <tr>
               <td>
-                <input type="text" name="chat" placeholder="send message" />
+                <input
+                  type="text"
+                  name="chat"
+                  id="msg"
+                  placeholder="send message"
+                />
               </td>
             </tr>
             <tr>
               <td><input id="groupId" name="id" type="hidden" /></td>
             </tr>
+            <!-- <tr>
+              <input type="file" id="image" />
+            </tr> -->
             <tr>
-              <form action="">
-                <input type="file" name="img-upload" id="uploader"/>
-                <button id="upBtn" onclick="imageUpload(event)">upload</button>
-              </form>
-            </tr>
-            <tr>
-              <td><button>send</button></td>
+              <td><button type="submit">send</button></td>
             </tr>
           </table>
+        </form>
+        <form onsubmit="imageSend(event)">
+          <table id="imageTable">
+            <tr>
+              <td>
+                <input type="file" id="image" />
+              </td>
+            </tr>
+            <tr>
+              <td><button>image send</button></td>
+            </tr>
+          </table>
+        </form>
       </div>
       <div id="list-of-users-inGroup">
         <h3>Member</h3>

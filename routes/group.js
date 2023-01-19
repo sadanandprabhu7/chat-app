@@ -25,4 +25,6 @@ router.post(
 router.post("/makeAdmin", autho.authorization, groupController.makeAdmin);
 router.post("/groupExit", autho.authorization, groupController.groupExit);
 
+router.post("/imageSend", autho.authorization, groupController.imageSend);
+
 module.exports = router;

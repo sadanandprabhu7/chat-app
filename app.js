@@ -1,6 +1,7 @@
 const express = require("express");
 const sequelize = require("./util/database");
 const bodyParser = require("body-parser");
+const fileupload = require("express-fileupload");
 const cors = require("cors");
 const path = require("path");
 
@@ -17,6 +18,7 @@ const UserGroup = require("./models/user-group");
 
 const app = express();
 app.use(cors());
+app.use(fileupload());
 app.use(bodyParser.json());
 var CronJob = require("cron").CronJob;
 
@@ -62,7 +64,7 @@ User.belongsToMany(Group, { through: UserGroup });
 Group.belongsToMany(User, { through: UserGroup });
 
 sequelize
-  //.sync({ force: true })
+  // .sync({ force: true })
   .sync()
   .then((res) => {
     app.listen(3000);

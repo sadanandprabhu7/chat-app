@@ -35,7 +35,12 @@ exports.openGroup = async (req, res, next) => {
     const chats = await Chat.findAll({
       limit: 5,
       order: [["id", "DESC"]],
-      where: { groupId: req.body.groupId },
+      where: {
+        chat: {
+          [Op.not]: null,
+        },
+        groupId: req.body.groupId,
+      },
       include: [{ model: User, attributes: ["id", "name"] }], // inculde here we are including model where in chat userid is promarykey so we have included user mode and only getting from there name and id associated with chat
     });
     res.status(200).json({ data: chats, userId: req.user.id });
@@ -46,19 +51,39 @@ exports.openGroup = async (req, res, next) => {
 
 exports.sendMesageInGroup = async (req, res, next) => {
   try {
-    // console.log(">>>>>>>.", req.body.file);
-    // const filename = `image/${new Date()}.png`;
-    // const fileUrl = await uploadToS3("image", filename);
-
     const message = req.body.message;
     const groupId = req.body.groupId;
-    const data = await req.user.createChat({ chat: message, groupId: groupId });
-    res.json({ data: data, msg: "success", name: req.user.name });
+    console.log("hi");
+    const data = await req.user.createChat({
+      chat: message,
+      groupId: groupId,
+    });
+    res.json({
+      data: data,
+      msg: "success",
+      name: req.user.name,
+    });
   } catch (e) {
     res.status(400).json({ msg: "something went wrong" });
   }
 };
-
+exports.imageSend = async (req, res, next) => {
+  try {
+    const groupId = req.body.id;
+    console.log(groupId);
+    const imageData = req.files.pic.data;
+    const filename = `${req.files.pic.name}${new Date()}`;
+    const url = await uploadToS3(imageData, filename);
+    console.log(url);
+    const data = await req.user.createChat({
+      image: url,
+      groupId: groupId,
+    });
+    res.json({ msg: "success" });
+  } catch (e) {
+    res.status(400).json({ msg: "something went wrong" });
+  }
+};
 function uploadToS3(data, filename) {
   const BUCKET_NAME = process.env.BUCKET_NAME;
   const IAM_USER_KEY = process.env.IAM_USER_KEY;
@@ -68,11 +93,11 @@ function uploadToS3(data, filename) {
     accessKeyId: IAM_USER_KEY,
     secretAccessKey: IM_USER_SECRET,
   });
-
   let params = {
     Bucket: BUCKET_NAME,
     Key: filename,
     Body: data,
+    ContentType: "image/jpeg",
     ACL: "public-read",
   };
 
