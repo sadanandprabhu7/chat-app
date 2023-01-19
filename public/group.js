@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     });
 
     document.getElementById("myform").style.display = "none";
+    document.getElementById("imageForm").style.display = "none";
   } catch (e) {
     console.log(e);
   }
@@ -23,6 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 async function openGroup(groupId, groupName) {
   try {
     document.getElementById("myform").style.display = "block";
+    document.getElementById("imageForm").style.display = "block";
     document.getElementById("groupId").value = groupId;
 
     //setInterval(async () => {

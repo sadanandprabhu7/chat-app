@@ -45,15 +45,12 @@
             <tr>
               <td><input id="groupId" name="id" type="hidden" /></td>
             </tr>
-            <!-- <tr>
-              <input type="file" id="image" />
-            </tr> -->
             <tr>
               <td><button type="submit">send</button></td>
             </tr>
           </table>
         </form>
-        <form onsubmit="imageSend(event)">
+        <form id="imageForm" onsubmit="imageSend(event)">
           <table id="imageTable">
             <tr>
               <td>

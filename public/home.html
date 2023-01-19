@@ -22,24 +22,14 @@
           <li><a href="sign-up.html">SIGNUP PAGE</a></li>
         </ul>
       </div>
-      <div id="chat-main-container">
-        <!-- <h2>chat</h2>
-        <ol id="list"></ol>
-        <table id="tb"></table>
-        <form onsubmit="message(event)">
-          <input type="text" name="chat" placeholder="send message" />
-          <button>send</button>
-        </form> -->
-      </div>
-
-      <div id="list-of-group-sidebar"></div>
-      <div id="createGroup-sidebar">
-        <h2>Create Group</h2>
+      <div id="createGroup">
         <form onsubmit="CreateGroup(event)">
-          <table>
+          <table id="createTable">
+            <th>Create Group</th>
             <tr>
               <td>
                 <input
+                  id="name"
                   type="text"
                   name="name"
                   placeholder="Enter Name of Group"
@@ -47,7 +37,7 @@
               </td>
             </tr>
             <tr>
-              <td><button>Create</button></td>
+              <td><button id="btn">Create</button></td>
             </tr>
           </table>
         </form>
